@@ -110,7 +110,11 @@
   }, { passive: true });
 })();
 
-// ===== REPRODUCTOR FLOTANTE (autoplay + fallback primera interacción) =====
+// ===== REPRODUCTOR FLOTANTE =====
+// Los navegadores bloquean autoplay con sonido. Solución:
+// 1. Arrancamos en muted (permitido siempre) → audio ya está corriendo
+// 2. En el primer gesto del usuario (scroll, clic, toque) quitamos el mute
+// Resultado: música empieza sola en cuanto el invitado toca la pantalla.
 (function initMusic() {
   const btn   = document.getElementById('music-btn');
   const audio = document.getElementById('bgmusic');
@@ -130,38 +134,33 @@
     }
   }
 
-  // Intento de autoplay al cargar
-  function tryAutoplay() {
-    audio.play()
-      .then(() => setPlaying(true))
-      .catch(() => {
-        // Bloqueado por el navegador — esperamos primera interacción del usuario
-        const unlock = () => {
-          audio.play()
-            .then(() => { setPlaying(true); cleanup(); })
-            .catch(() => {});
-        };
-        const cleanup = () => {
-          document.removeEventListener('click',      unlock);
-          document.removeEventListener('touchstart', unlock);
-          document.removeEventListener('keydown',    unlock);
-        };
-        document.addEventListener('click',      unlock, { once: true });
-        document.addEventListener('touchstart', unlock, { once: true });
-        document.addEventListener('keydown',    unlock, { once: true });
-      });
+  // Arrancamos muted — el navegador siempre lo permite
+  audio.muted = true;
+  audio.play().catch(() => {});
+
+  // Al primer gesto real: desmutear y mostrar estado
+  function unmute() {
+    audio.muted = false;
+    setPlaying(true);
+    document.removeEventListener('click',     unmute);
+    document.removeEventListener('touchstart', unmute);
+    document.removeEventListener('scroll',     unmute);
+    document.removeEventListener('keydown',    unmute);
   }
 
-  // Lanzar cuando el audio esté listo
-  if (audio.readyState >= 2) {
-    tryAutoplay();
-  } else {
-    audio.addEventListener('canplay', tryAutoplay, { once: true });
-  }
+  document.addEventListener('click',      unmute, { passive: true });
+  document.addEventListener('touchstart', unmute, { passive: true });
+  document.addEventListener('scroll',     unmute, { passive: true });
+  document.addEventListener('keydown',    unmute, { passive: true });
 
-  // Botón manual: alternar pausa / reproducción
+  // Botón manual: alternar pausa / reproducción (ya sin mute)
   btn.addEventListener('click', e => {
     e.stopPropagation();
+    if (audio.muted) {
+      // Todavía en muted: primer clic lo activa
+      unmute();
+      return;
+    }
     if (audio.paused) {
       audio.play().then(() => setPlaying(true)).catch(() => {});
     } else {
