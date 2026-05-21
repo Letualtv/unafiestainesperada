@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cumpleaños Hobbit — Joso Tuk · 27 de Junio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph — previsualización al compartir por WhatsApp / redes -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Una Fiesta Inesperada 🌿 Cumpleaños de Joso · 27 de Junio">
+  <meta property="og:description" content="Estás invitado a la fiesta hobbit más esperada de la Comarca. 27 de Junio · 19:00h · Mountain Horse Ranch, Tocón de Quéntar, Granada.">
+  <meta property="og:image"       content="Cartel-de-la-fiesta.jpeg">
+  <meta property="og:image:alt"   content="Cartel oficial — Happy Birthday Bilbo Baggins">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="description"        content="Fiesta de cumpleaños hobbit · 27 de Junio · Mountain Horse Ranch, Tocón de Quéntar, Granada.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="stars"></canvas>
+
+  <!-- Música (FLAC) — autoplay con fallback a primera interacción -->
+  <audio id="bgmusic" loop preload="auto">
+    <source src="music/music.flac" type="audio/flac">
+  </audio>
+
+  <!-- Botón flotante de música -->
+  <button id="music-btn" class="music-btn" aria-label="Música" title="Música de la Comarca">
+    <i class="fa-solid fa-music"></i>
+  </button>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-smoke"></div>
+    <div class="hero-content">
+
+      <div class="ring-parallax">
+        <div class="ring-glow"></div>
+        <div class="ring-container">
+          <img class="ring" src="img/onering.png" alt="El Anillo Único — inscripción en Tengwar">
+        </div>
+      </div>
+
+      <p class="hero-subtitle">La Comarca os convoca</p>
+      <h1 class="hero-title">Una Fiesta<br>Inesperada</h1>
+      <p class="hero-date">
+        <i class="fa-regular fa-calendar-days"></i>&nbsp; 27 de Junio &nbsp;·&nbsp;
+        <i class="fa-regular fa-clock"></i>&nbsp; 19:00h
+      </p>
+      <p class="hero-place">
+        <i class="fa-solid fa-location-dot"></i>&nbsp; Quedamos en Quéntar · Mountain Horse Ranch · Granada
+      </p>
+      <a href="#info" class="btn-scroll">
+        <span>Leer la invitación</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </div>
+    <div class="hills"></div>
+  </section>
+
+  <!-- ===== CARTA + CARTEL ===== -->
+  <section id="info" class="section-parchment">
+    <div class="container">
+      <div class="carta-layout scroll-reveal">
+        <div class="carta-texto">
+          <div class="door-icon"><i class="fa-solid fa-dungeon"></i></div>
+          <h2 class="section-title carta-title">Queridos Hobbits</h2>
+          <p class="letter-text">
+            Si estás leyendo esto es porque me he marchado por un tiempo con los elfos,
+            pero volveré para celebrar una <strong>increíble fiesta de cumpleaños</strong>
+            a la cual estás invitado.
+          </p>
+          <p class="letter-text italic">
+            Si estás aquí es porque realmente aprecio muchísimo tu presencia
+            y me encantaría que estuvieras a mi lado el día que cumplo
+            <span class="highlight">111 años</span>, aunque parezca que tengo 40.
+          </p>
+          <p class="letter-signature">
+            — <em>Joso «Pies Peludos» Tuk</em>, el Cumpleañero de la Comarca
+          </p>
+          <div class="tristan-note">
+            <img src="img/frodo.png" alt="Frodo" class="tristan-img">
+            <p>
+              <em>P.D.:</em> El pequeño <strong>Tristán</strong>,
+              guardián de los caballos del rancho y señor custodio de la Comarca,
+              también os espera con los brazos abiertos.
+            </p>
+          </div>
+        </div>
+        <div class="cartel-frame">
+          <div class="cartel-pin">📌</div>
+          <img src="Cartel-de-la-fiesta.jpeg"
+               alt="Cartel oficial — Happy Birthday Bilbo Baggins"
+               loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUENTA ATRÁS ===== -->
+  <section id="countdown" class="section-dark">
+    <div class="container">
+      <h2 class="section-title light">Faltan…</h2>
+      <div class="countdown-grid">
+        <div class="countdown-item"><span id="cd-days">--</span><label>Días</label></div>
+        <div class="countdown-item"><span id="cd-hours">--</span><label>Horas</label></div>
+        <div class="countdown-item"><span id="cd-minutes">--</span><label>Minutos</label></div>
+        <div class="countdown-item"><span id="cd-seconds">--</span><label>Segundos</label></div>
+      </div>
+      <p class="countdown-sub">para la fiesta más inesperada de la Comarca</p>
+    </div>
+  </section>
+
+  <!-- ===== PROGRAMA ===== -->
+  <section id="programa" class="section-parchment">
+    <div class="container">
+      <h2 class="section-title scroll-reveal">El Programa del Festín</h2>
+      <div class="timeline">
+        <div class="tl-item scroll-reveal">
+          <div class="tl-icon"><i class="fa-solid fa-sun"></i></div>
+          <div class="tl-content">
+            <h3>19:00 — Llegada a la Comarca</h3>
+            <p>Quedamos en Quéntar y vamos juntos al rancho. Llegamos con la luz del atardecer para no sufrir el calor. Juegos, pasatiempos y el sol tiñendo el horizonte.</p>
+          </div>
+        </div>
+        <div class="tl-item scroll-reveal">
+          <div class="tl-icon"><i class="fa-solid fa-utensils"></i></div>
+          <div class="tl-content">
+            <h3>Al caer la noche — El Gran Banquete</h3>
+            <p>Una cena al más puro estilo hobbit: un banquete digno de dioses alrededor de la hoguera campestre.</p>
+          </div>
+        </div>
+        <div class="tl-item scroll-reveal">
+          <div class="tl-icon"><i class="fa-solid fa-guitar"></i></div>
+          <div class="tl-content">
+            <h3>Música &amp; Baile</h3>
+            <p>Los violines y las flautas no pararán de sonar. Bailaremos mientras degustamos los más ricos licores de la Cuaderna del Este.</p>
+          </div>
+        </div>
+        <div class="tl-item scroll-reveal">
+          <div class="tl-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="tl-content">
+            <h3>Bajo las Estrellas</h3>
+            <p>Todo esto bajo un increíble cielo estrellado. Hoguera, fotos en el rincón ambientado y recuerdos para siempre junto a Joso y el pequeño Tristán.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LUGAR ===== -->
+  <section id="lugar" class="section-forest">
+    <div class="container">
+      <h2 class="section-title light scroll-reveal">El Rincón de la Comarca</h2>
+      <div class="lugar-grid">
+        <div class="lugar-info scroll-reveal">
+          <div class="info-card">
+            <i class="fa-solid fa-people-group info-fa"></i>
+            <h3>Punto de encuentro: Quéntar</h3>
+            <p>Quedamos en <strong>Quéntar</strong> y vamos juntos al rancho.<br><em>~50 min desde Granada capital</em></p>
+          </div>
+          <div class="info-card">
+            <i class="fa-solid fa-horse info-fa"></i>
+            <h3>Mountain Horse Ranch</h3>
+            <p>Tocón de Quéntar · Granada. Caballos, vacas, gallinas y naturaleza salvaje. El sitio idóneo para mover tus pies peludos.</p>
+          </div>
+          <div class="info-card">
+            <i class="fa-solid fa-beer-mug-empty info-fa"></i>
+            <h3>Todo incluido</h3>
+            <p>Toda la comida y bebida corre por cuenta de <strong>La Casa del Zorro Bajo el Roble</strong>. Solo traes tus ganas.</p>
+          </div>
+        </div>
+        <div class="lugar-map scroll-reveal">
+          <div class="map-wrapper">
+            <iframe
+              src="https://maps.google.com/maps?q=Qu%C3%A9ntar%2C+Granada%2C+Espa%C3%B1a&z=14&output=embed"
+              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="Punto de encuentro: Quéntar, Granada">
+            </iframe>
+          </div>
+          <a class="btn-map" href="https://maps.google.com/?q=Qu%C3%A9ntar%2C+Granada%2C+Espa%C3%B1a"
+             target="_blank" rel="noopener">
+            <i class="fa-solid fa-map-location-dot"></i>&nbsp; Abrir en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DISFRAZ ===== -->
+  <section id="disfraz" class="section-parchment">
+    <div class="container">
+      <h2 class="section-title scroll-reveal">
+        <i class="fa-solid fa-hat-wizard fa-sm"></i>&nbsp; ¿Cómo vestir de Hobbit?
+      </h2>
+      <p class="section-sub scroll-reveal">Es muy facilito. Aquí tenéis la guía completa y ejemplos reales.</p>
+
+      <div class="guia-looks scroll-reveal">
+        <img src="img/guia-looks.jpeg" alt="Guía de looks para la fiesta hobbit" loading="lazy">
+      </div>
+
+      <h3 class="gallery-title scroll-reveal">
+        <i class="fa-regular fa-images"></i>&nbsp; Inspiración &amp; Referencias
+      </h3>
+      <div class="gallery-grid">
+        <div class="gallery-item scroll-reveal">
+          <img src="img/looks-collage.jpeg"        alt="Collage de looks femeninos hobbit" loading="lazy">
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="img/foto-grupo.jpeg"            alt="Foto real de grupo con disfraces hobbit" loading="lazy">
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="img/look-campo.jpeg"            alt="Look femenino con corona de flores al atardecer" loading="lazy">
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="img/look-clasico.jpeg"          alt="Look clásico hobbit femenino" loading="lazy">
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="img/look-masculino.jpeg"        alt="Look masculino con chaleco y tirantes" loading="lazy">
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="img/ilustracion-hobbits.jpeg"   alt="Ilustración de hobbits de la Comarca" loading="lazy">
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="img/ilustracion-hobbit.jpeg"    alt="Ilustración de hobbit femenina" loading="lazy">
+        </div>
+      </div>
+
+      <div class="coming-soon-badge scroll-reveal">
+        <i class="fa-regular fa-comment-dots"></i>&nbsp; ¿Dudas con el disfraz? Escribe a Joso — ¡él os orienta!
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONFIRMACIÓN ===== -->
+  <section id="confirma" class="section-dark">
+    <div class="container text-center">
+      <h2 class="section-title light scroll-reveal">¿Vienes a la Fiesta?</h2>
+      <p class="section-sub light scroll-reveal">
+        Confirma tu asistencia o comenta si tienes algún problema.
+        No te cortes, estamos para ello.
+      </p>
+      <p class="section-sub light italic scroll-reveal">
+        Los que no puedan venir que lo comuniquen. ¡Sin drama, pero que se salga!
+      </p>
+      <div class="confirm-actions scroll-reveal">
+        <a class="btn-confirm btn-yes"
+           href="https://wa.me/34630419923?text=¡Allí%20estaré!%20🍺%20Fiesta%20Hobbit%2027J"
+           target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i>&nbsp; ¡Allí estaré!
+        </a>
+        <a class="btn-confirm btn-no"
+           href="https://wa.me/34630419923?text=No%20podré%20ir%20a%20la%20fiesta%20Hobbit%20del%2027J%20😢"
+           target="_blank" rel="noopener">
+          <i class="fa-solid fa-heart-crack"></i>&nbsp; No puedo ir
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p><i class="fa-solid fa-leaf" style="color:var(--gold)"></i>&nbsp;
+       <em>"Not all those who wander are lost."</em>
+       &nbsp;<i class="fa-solid fa-leaf" style="color:var(--gold)"></i>
+    </p>
+    <p class="footer-small">Joso «Pies Peludos» Tuk · Mountain Horse Ranch · 27 de Junio de 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
