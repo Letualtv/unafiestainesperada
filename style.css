@@ -710,13 +710,6 @@ body {
 
 .btn-confirm:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
 
-.wa-icon {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: -0.2em;
-  flex-shrink: 0;
-}
-
 .btn-yes { background: var(--gold); color: var(--night); }
 
 .btn-no {
